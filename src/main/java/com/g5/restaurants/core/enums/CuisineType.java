@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture.ands.core.enums;
+package com.g5.restaurants.core.enums;
 
 public enum CuisineType {
   ITALIANO,

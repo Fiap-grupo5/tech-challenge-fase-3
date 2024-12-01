@@ -1,11 +1,11 @@
-package com.example.cleanarchitecture.ands.infrastructure.config;
-
-import com.example.cleanarchitecture.ands.core.repositories.RestaurantRepository;
-import com.example.cleanarchitecture.ands.core.usecases.CreateRestaurantUseCase;
-import com.example.cleanarchitecture.ands.core.usecases.SearchRestaurantUseCase;
+package com.g5.restaurants.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.g5.restaurants.core.repositories.RestaurantRepository;
+import com.g5.restaurants.core.usecases.CreateRestaurantUseCase;
+import com.g5.restaurants.core.usecases.SearchRestaurantUseCase;
 
 @Configuration
 public class UseCaseConfig {

@@ -1,11 +1,11 @@
-package com.example.cleanarchitecture.ands.infrastructure.controllers;
-
-import com.example.cleanarchitecture.ands.core.domain.entities.Restaurant;
-import com.example.cleanarchitecture.ands.core.enums.CuisineType;
-import com.example.cleanarchitecture.ands.core.usecases.CreateRestaurantUseCase;
-import com.example.cleanarchitecture.ands.core.usecases.SearchRestaurantUseCase;
+package com.g5.restaurants.infrastructure.controllers;
 
 import org.springframework.web.bind.annotation.*;
+
+import com.g5.restaurants.core.domain.entities.Restaurant;
+import com.g5.restaurants.core.enums.CuisineType;
+import com.g5.restaurants.core.usecases.CreateRestaurantUseCase;
+import com.g5.restaurants.core.usecases.SearchRestaurantUseCase;
 
 import java.util.List;
 

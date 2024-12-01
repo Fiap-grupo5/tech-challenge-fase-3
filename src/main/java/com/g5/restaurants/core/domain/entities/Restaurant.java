@@ -1,8 +1,8 @@
-package com.example.cleanarchitecture.ands.core.domain.entities;
+package com.g5.restaurants.core.domain.entities;
 
 import java.time.LocalTime;
 
-import com.example.cleanarchitecture.ands.core.enums.CuisineType;
+import com.g5.restaurants.core.enums.CuisineType;
 
 public record Restaurant(
     String id,

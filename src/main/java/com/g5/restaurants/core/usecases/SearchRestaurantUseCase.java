@@ -1,10 +1,11 @@
-package com.example.cleanarchitecture.ands.core.usecases;
+package com.g5.restaurants.core.usecases;
 
 import java.util.List;
 
-import com.example.cleanarchitecture.ands.core.domain.entities.Restaurant;
-import com.example.cleanarchitecture.ands.core.repositories.RestaurantRepository;
-import com.example.cleanarchitecture.ands.core.enums.CuisineType;
+import com.g5.restaurants.core.domain.entities.Restaurant;
+import com.g5.restaurants.core.enums.CuisineType;
+import com.g5.restaurants.core.repositories.RestaurantRepository;
+
 
 public class SearchRestaurantUseCase {
   private final RestaurantRepository restaurantRepository;

@@ -1,8 +1,9 @@
-package com.example.cleanarchitecture.ands.core.repositories;
+package com.g5.restaurants.core.repositories;
 
-import com.example.cleanarchitecture.ands.core.domain.entities.Restaurant;
-import com.example.cleanarchitecture.ands.core.enums.CuisineType;
 import java.util.List;
+
+import com.g5.restaurants.core.domain.entities.Restaurant;
+import com.g5.restaurants.core.enums.CuisineType;
 
 public interface RestaurantRepository {
   void save(Restaurant restaurant);

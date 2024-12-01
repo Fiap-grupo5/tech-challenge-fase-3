@@ -1,8 +1,4 @@
-package com.example.cleanarchitecture.ands.infrastructure.repositories;
-
-import com.example.cleanarchitecture.ands.core.domain.entities.Restaurant;
-import com.example.cleanarchitecture.ands.core.repositories.RestaurantRepository;
-import com.example.cleanarchitecture.ands.core.enums.CuisineType;
+package com.g5.restaurants.infrastructure.repositories;
 
 import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -10,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
+
+import com.g5.restaurants.core.domain.entities.Restaurant;
+import com.g5.restaurants.core.enums.CuisineType;
+import com.g5.restaurants.core.repositories.RestaurantRepository;
 
 import java.util.List;
 
