@@ -1,0 +1,207 @@
+openapi: 3.0.3
+info:
+  title: Swagger Restaurants
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: https://localhost:8080
+    description: Local server
+
+paths:
+  /reservation:
+    get:
+      operationId: findReservation
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginateReservation'
+    post:
+      operationId: createReservation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReservation'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+        '400':
+          description: Error
+        '422':
+          description: Validation Error
+
+  /reservation/{id}:
+    get:
+      operationId: findReservationById
+      parameters:
+        - name: id
+          in: path
+          description: Reservation Id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+        '400':
+          description: Error
+        '404':
+          description: Not Found Error
+    put:
+      operationId: updateReservation
+      parameters:
+        - name: id
+          in: path
+          description: Reservation ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateReservation'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+        '400':
+          description: Error
+        '404':
+          description: Not Found Error
+        '422':
+          description: Validation Error
+    delete:
+      operationId: deleteReservation
+      parameters:
+        - name: id
+          in: path
+          description: Reservation ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Error
+        '404':
+          description: Not Found Error
+
+components:
+  schemas:
+    Reservation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Reservation ID
+          example: 01ec2160-587e-4551-bc4a-3b65484058f8
+        restaurantId:
+          type: string
+          format: uuid
+          description: Restaurant ID
+          example: 01ec2160-587e-4551-bc4a-3b65484058f8
+        customerName:
+          type: string
+          minLength: 2
+          description: Name of Customer
+          example: Gabriel Silva
+        customerContact:
+          type: string
+          format: phone
+          description: Contact of Customer
+        reservationDate:
+          type: string
+          format: date
+          example: "2024-01-01"
+        numberOfTables:
+          type: integer
+          description: Number of tables in reservation
+          minimum: 1
+          example: 1
+        status:
+          type: string
+          format: enum
+          enum:
+            - PENDING
+            - CONFIRMED
+            - CANCELED
+          description: Reservation Status
+          example: PENDING
+    PaginateReservation:
+        type: array
+        items:
+          $ref: "#/components/schemas/Reservation"
+    CreateReservation:
+      required:
+        - restaurantId
+        - customerName
+        - customerContact
+        - reservationDate
+        - numberOfTables
+      type: object
+      properties:
+        restaurantId:
+          type: string
+          format: uuid
+          description: Restaurant ID
+          example: 01ec2160-587e-4551-bc4a-3b65484058f8
+        customerName:
+          type: string
+          minLength: 2
+          description: Name of Customer
+          example: Gabriel Silva
+        customerContact:
+          type: string
+          format: phone
+          description: Contact of Customer
+        reservationDate:
+          type: string
+          format: date
+          example: "2024-01-01"
+        numberOfTables:
+          type: integer
+          description: Number of tables in reservation
+          minimum: 1
+          example: 1
+        status:
+          type: string
+          format: enum
+          enum:
+            - PENDING
+            - CONFIRMED
+            - CANCELED
+          description: Reservation Status
+          example: PENDING
+    UpdateReservation:
+      type: object
+      properties:
+        status:
+          type: string
+          format: enum
+          enum:
+            - PENDING
+            - CONFIRMED
+            - CANCELED
+          description: Reservation Status
+          example: PENDING
