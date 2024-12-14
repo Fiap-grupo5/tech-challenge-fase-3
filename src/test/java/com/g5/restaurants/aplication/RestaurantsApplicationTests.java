@@ -1,4 +1,4 @@
-package com.g5.restaurants;
+package com.g5.restaurants.aplication;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

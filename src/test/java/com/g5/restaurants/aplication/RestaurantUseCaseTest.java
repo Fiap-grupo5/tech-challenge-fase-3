@@ -1,4 +1,4 @@
-package com.g5.restaurants;
+package com.g5.restaurants.aplication;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
