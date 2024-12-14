@@ -12,9 +12,6 @@ public class DefaultReservationCreateUseCase extends ReservationCreateUseCase {
 
     @Override
     public ReservationCreateUseCaseOutput execute(ReservationCreateUseCaseInput input) {
-        /*
-        * TODO: Validate Restaurant Reservation
-        * */
         final var reservation =
                 Reservation.newReservation(
                         BaseId.from(input.restaurantId()),

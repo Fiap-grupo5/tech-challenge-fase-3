@@ -13,7 +13,7 @@ import jakarta.validation.constraints.*;
  * CreateReviewDTO
  */
 @Validated
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-12-12T04:50:14.482721503-03:00[America/Sao_Paulo]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-12-13T00:34:18.274509132-03:00[America/Sao_Paulo]")
 
 
 public class CreateReviewDTO   {

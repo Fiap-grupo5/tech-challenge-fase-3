@@ -1,13 +1,13 @@
 package com.g5.restaurants.aplication.domain.restaurant;
 
+import java.time.LocalTime;
+
 import com.g5.restaurant.model.RestaurantDTO;
 import com.g5.restaurants.aplication.domain.base.BaseId;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor

@@ -1,10 +1,11 @@
 package com.g5.restaurants.aplication.usecases.review.retrive.get;
 
-import com.g5.restaurants.aplication.domain.base.BaseId;
+import org.springframework.http.HttpStatus;
+
 import com.g5.restaurants.aplication.exceptions.CommonException;
 import com.g5.restaurants.aplication.repositories.ReviewRepository;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 
 @RequiredArgsConstructor
 public class DefaultReviewGetByIdUseCase extends ReviewGetByIdUseCase{
