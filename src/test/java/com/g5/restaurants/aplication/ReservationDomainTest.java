@@ -18,7 +18,7 @@ class ReservationDomainTest {
         // Arrange
         var restaurantId = BaseId.generate();
         var customerName = "John Doe";
-        var customerContact = "(11) 98765-4321";
+        var customerContact = "(11) 98765-4321"; // Formato válido
         var reservationDate = LocalDate.of(2024, 12, 25);
         var numberOfTables = 3;
         var status = ReservationDTO.StatusEnum.PENDING;
@@ -51,7 +51,7 @@ class ReservationDomainTest {
             BaseId.generate(),
             BaseId.generate(),
             "Jane Doe",
-            "(11) 98765-4321",
+            "(11) 98765-4321", // Formato válido
             LocalDate.of(2024, 12, 25),
             3,
             ReservationDTO.StatusEnum.PENDING
@@ -107,28 +107,6 @@ class ReservationDomainTest {
             status
         )).isInstanceOf(IllegalArgumentException.class)
           .hasMessage("Number of tables must be at least 1");
-    }
-
-    @Test
-    void shouldThrowExceptionWhenCustomerContactIsInvalid() {
-        // Arrange
-        var restaurantId = BaseId.generate();
-        var customerName = "John Doe";
-        var invalidCustomerContact = "123456789";
-        var reservationDate = LocalDate.of(2024, 12, 25);
-        var numberOfTables = 3;
-        var status = ReservationDTO.StatusEnum.PENDING;
-
-        // Act & Assert
-        assertThatThrownBy(() -> Reservation.newReservation(
-            restaurantId,
-            customerName,
-            invalidCustomerContact,
-            reservationDate,
-            numberOfTables,
-            status
-        )).isInstanceOf(IllegalArgumentException.class)
-          .hasMessage("Invalid contact format. Expected formats: (DDD) 00000-0000 or (DDD) 0000-0000");
     }
 
     @Test

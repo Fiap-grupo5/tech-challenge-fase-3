@@ -57,7 +57,7 @@ public class ReservationUseCaseTest {
         return Reservation.newReservation(
             BaseId.generate(),
             "Customer Name",
-            "Customer Contact",
+            "(11) 98765-4321",
             LocalDate.now(),
             2,
             ReservationDTO.StatusEnum.CONFIRMED
@@ -70,7 +70,7 @@ public class ReservationUseCaseTest {
         var input = new ReservationCreateUseCaseInput(
             BaseId.generate().toString(),
             "Customer Name",
-            "Customer Contact",
+            "(11) 98765-4321",
             LocalDate.now(),
             2
         );
