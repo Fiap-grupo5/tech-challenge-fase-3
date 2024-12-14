@@ -42,7 +42,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-12-14T10:04:31.169644147-03:00[America/Sao_Paulo]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-12-14T12:13:02.936758130-03:00[America/Sao_Paulo]")
 @Validated
 public interface ReviewApi {
 

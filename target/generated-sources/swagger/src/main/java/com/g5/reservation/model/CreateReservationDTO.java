@@ -15,7 +15,7 @@ import jakarta.validation.constraints.*;
  * CreateReservationDTO
  */
 @Validated
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-12-14T10:04:32.755161419-03:00[America/Sao_Paulo]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-12-14T12:13:04.488019175-03:00[America/Sao_Paulo]")
 
 
 public class CreateReservationDTO   {

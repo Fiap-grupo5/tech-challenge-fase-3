@@ -17,6 +17,6 @@ public class DefaultReviewGetByIdUseCase extends ReviewGetByIdUseCase{
                 .findById(input)
                 .map(ReviewGetByIdUseCaseOutput::from)
                 .orElseThrow(
-                        () -> new CommonException("Review with ID %s not found.".formatted(input), HttpStatus.NOT_FOUND));
+                        () -> new CommonException("Review with ID %s not found!.".formatted(input), HttpStatus.NOT_FOUND));
     }
 }

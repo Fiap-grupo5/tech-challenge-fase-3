@@ -64,28 +64,29 @@ public class RestaurantUseCaseTest {
     @Test
     void shouldCreateRestaurant() {
         // Arrange
-        var input = new RestaurantCreateUseCaseInput(
-            "Tia Nicole",
-            10,
-            "Rua das Clarisas, 100",
-            "Belo Horizonte",
-            "MG",
-            RestaurantDTO.TypeEnum.BRAZILIAN,
-            LocalTime.of(10, 0),
-            LocalTime.of(22, 0)
-        );
-
         var restaurant = createRestaurant();
+        var input = new RestaurantCreateUseCaseInput(
+            restaurant.getName(),
+            restaurant.getNumberOfTables(),
+            restaurant.getAddress(),
+            restaurant.getCity(),
+            restaurant.getState(),
+            restaurant.getType(),
+            restaurant.getOpenedAt(),
+            restaurant.getClosedAt() 
+        );
+    
         when(restaurantRepository.create(any())).thenReturn(restaurant);
-
+    
         // Act
         var output = createUseCase.execute(input);
-
+    
         // Assert
         assertThat(output).isNotNull();
-        assertThat(output.name()).isEqualTo("Tia Nicole");
+        assertThat(output.name()).isEqualTo(restaurant.getName());
         verify(restaurantRepository, times(1)).create(any());
     }
+    
 
     @Test
     void shouldDeleteRestaurant() {

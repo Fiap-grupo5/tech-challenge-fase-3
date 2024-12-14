@@ -19,8 +19,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-12-14T10:04:42-0300",
-    comments = "version: 1.6.0, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
+    date = "2024-12-14T12:13:29-0300",
+    comments = "version: 1.6.0, compiler: Eclipse JDT (IDE) 3.40.0.z20241112-1021, environment: Java 17.0.13 (Eclipse Adoptium)"
 )
 @Component
 public class ReviewMapperImpl implements ReviewMapper {
@@ -193,10 +193,10 @@ public class ReviewMapperImpl implements ReviewMapper {
 
         Review review = new Review();
 
-        review.setReviewerName( entity.getReviewerName() );
-        review.setRating( entity.getRating() );
         review.setComments( entity.getComments() );
         review.setCreatedAt( entity.getCreatedAt() );
+        review.setRating( entity.getRating() );
+        review.setReviewerName( entity.getReviewerName() );
         review.setUpdatedAt( entity.getUpdatedAt() );
 
         review.setId( new BaseId(entity.getId()) );
