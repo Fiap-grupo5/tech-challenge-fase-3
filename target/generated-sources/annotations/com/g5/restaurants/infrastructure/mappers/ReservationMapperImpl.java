@@ -18,8 +18,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-12-14T09:01:19-0300",
-    comments = "version: 1.6.0, compiler: Eclipse JDT (IDE) 3.40.0.z20241112-1021, environment: Java 17.0.13 (Eclipse Adoptium)"
+    date = "2024-12-14T10:04:42-0300",
+    comments = "version: 1.6.0, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 @Component
 public class ReservationMapperImpl implements ReservationMapper {
@@ -155,10 +155,10 @@ public class ReservationMapperImpl implements ReservationMapper {
 
         Reservation reservation = new Reservation();
 
-        reservation.setCustomerContact( entity.getCustomerContact() );
         reservation.setCustomerName( entity.getCustomerName() );
-        reservation.setNumberOfTables( entity.getNumberOfTables() );
+        reservation.setCustomerContact( entity.getCustomerContact() );
         reservation.setReservationDate( entity.getReservationDate() );
+        reservation.setNumberOfTables( entity.getNumberOfTables() );
         if ( entity.getStatus() != null ) {
             reservation.setStatus( Enum.valueOf( ReservationDTO.StatusEnum.class, entity.getStatus() ) );
         }

@@ -19,8 +19,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-12-14T09:01:20-0300",
-    comments = "version: 1.6.0, compiler: Eclipse JDT (IDE) 3.40.0.z20241112-1021, environment: Java 17.0.13 (Eclipse Adoptium)"
+    date = "2024-12-14T10:04:42-0300",
+    comments = "version: 1.6.0, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 @Component
 public class RestaurantMapperImpl implements RestaurantMapper {
@@ -206,16 +206,16 @@ public class RestaurantMapperImpl implements RestaurantMapper {
 
         Restaurant restaurant = new Restaurant();
 
-        restaurant.setAddress( entity.getAddress() );
-        restaurant.setCity( entity.getCity() );
-        restaurant.setClosedAt( entity.getClosedAt() );
         restaurant.setName( entity.getName() );
         restaurant.setNumberOfTables( entity.getNumberOfTables() );
-        restaurant.setOpenedAt( entity.getOpenedAt() );
+        restaurant.setAddress( entity.getAddress() );
+        restaurant.setCity( entity.getCity() );
         restaurant.setState( entity.getState() );
         if ( entity.getType() != null ) {
             restaurant.setType( Enum.valueOf( RestaurantDTO.TypeEnum.class, entity.getType() ) );
         }
+        restaurant.setOpenedAt( entity.getOpenedAt() );
+        restaurant.setClosedAt( entity.getClosedAt() );
 
         restaurant.setId( new BaseId(entity.getId()) );
 

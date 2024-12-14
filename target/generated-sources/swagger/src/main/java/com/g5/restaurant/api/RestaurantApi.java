@@ -43,7 +43,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-12-13T00:34:19.998662689-03:00[America/Sao_Paulo]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-12-14T10:04:33.412783405-03:00[America/Sao_Paulo]")
 @Validated
 public interface RestaurantApi {
 

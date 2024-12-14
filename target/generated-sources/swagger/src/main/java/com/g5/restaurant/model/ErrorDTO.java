@@ -14,7 +14,7 @@ import jakarta.validation.constraints.*;
  * ErrorDTO
  */
 @Validated
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-12-13T00:34:19.998662689-03:00[America/Sao_Paulo]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-12-14T10:04:33.412783405-03:00[America/Sao_Paulo]")
 
 
 public class ErrorDTO   {

@@ -15,6 +15,7 @@ public class DefaultRestaurantGetByIdUseCase extends RestaurantGetByIdUseCase {
                 .findById(input)
                 .map(RestaurantGetByIdUseCaseOutput::from)
                 .orElseThrow(
-                        () -> new CommonException("Restaurant with ID %d not found".formatted(input), HttpStatus.NOT_FOUND));
+                        () -> new CommonException("Restaurant with ID %s not found.".formatted(input), HttpStatus.NOT_FOUND));
     }
 }
+
