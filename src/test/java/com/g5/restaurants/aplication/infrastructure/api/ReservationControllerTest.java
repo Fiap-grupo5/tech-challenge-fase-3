@@ -254,4 +254,4 @@ class ReservationControllerTest {
                 assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
                 verify(reservationDeleteUseCase, times(1)).execute(id);
         }
-        }
+}
