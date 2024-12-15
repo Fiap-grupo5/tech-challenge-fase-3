@@ -1,15 +1,14 @@
-package com.g5.restaurants.aplication;
-
-import com.g5.reservation.model.ReservationDTO;
-import com.g5.restaurants.aplication.domain.base.BaseId;
-import com.g5.restaurants.aplication.domain.reservation.Reservation;
-
-import org.junit.jupiter.api.Test;
-
-import java.time.LocalDate;
+package com.g5.restaurants.aplication.domain.reservation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.time.LocalDate;
+
+import org.junit.jupiter.api.Test;
+
+import com.g5.reservation.model.ReservationDTO;
+import com.g5.restaurants.aplication.domain.base.BaseId;
 
 class ReservationDomainTest {
 
