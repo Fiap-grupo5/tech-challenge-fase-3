@@ -29,36 +29,38 @@ public interface ReviewMapper {
 
     ReviewMapper INSTANCE = Mappers.getMapper(ReviewMapper.class);
 
+    // Métodos toDTO únicos para cada caso de uso
     @Mapping(target = "id", expression = "java(java.util.UUID.fromString(output.id().toString()))")
     @Mapping(target = "restaurantId", expression = "java(java.util.UUID.fromString(output.restaurantId().toString()))")
     @Mapping(target = "createdAt", expression = "java(mapOffsetDateTime(output.createdAt()))")
     @Mapping(target = "updatedAt", expression = "java(mapOffsetDateTime(output.updatedAt()))")
-    ReviewDTO toDTO(ReviewCreateUseCaseOutput output);
+    ReviewDTO toDTOFromCreateOutput(ReviewCreateUseCaseOutput output);
 
     @Mapping(target = "id", expression = "java(java.util.UUID.fromString(output.id().toString()))")
     @Mapping(target = "restaurantId", expression = "java(java.util.UUID.fromString(output.restaurantId().toString()))")
     @Mapping(target = "createdAt", expression = "java(mapOffsetDateTime(output.createdAt()))")
     @Mapping(target = "updatedAt", expression = "java(mapOffsetDateTime(output.updatedAt()))")
-    ReviewDTO toDTO(ReviewGetByIdUseCaseOutput output);
+    ReviewDTO toDTOFromGetByIdOutput(ReviewGetByIdUseCaseOutput output);
 
     @Mapping(target = "id", expression = "java(java.util.UUID.fromString(output.id().toString()))")
     @Mapping(target = "restaurantId", expression = "java(java.util.UUID.fromString(output.restaurantId().toString()))")
     @Mapping(target = "createdAt", expression = "java(mapOffsetDateTime(output.createdAt()))")
     @Mapping(target = "updatedAt", expression = "java(mapOffsetDateTime(output.updatedAt()))")
-    ReviewDTO toDTO(ReviewListUseCaseOutput output);
+    ReviewDTO toDTOFromListOutput(ReviewListUseCaseOutput output);
 
     @Mapping(target = "id", expression = "java(java.util.UUID.fromString(output.id().toString()))")
     @Mapping(target = "restaurantId", expression = "java(java.util.UUID.fromString(output.restaurantId().toString()))")
     @Mapping(target = "createdAt", expression = "java(mapOffsetDateTime(output.createdAt()))")
     @Mapping(target = "updatedAt", expression = "java(mapOffsetDateTime(output.updatedAt()))")
-    ReviewDTO toDTO(ReviewListByRestaurantIdUseCaseOutput output);
+    ReviewDTO toDTOFromListByRestaurantOutput(ReviewListByRestaurantIdUseCaseOutput output);
 
     @Mapping(target = "id", expression = "java(java.util.UUID.fromString(output.id().toString()))")
     @Mapping(target = "restaurantId", expression = "java(java.util.UUID.fromString(output.restaurantId().toString()))")
     @Mapping(target = "createdAt", expression = "java(mapOffsetDateTime(output.createdAt()))")
     @Mapping(target = "updatedAt", expression = "java(mapOffsetDateTime(output.updatedAt()))")
-    ReviewDTO toDTO(ReviewUpdateUseCaseOutput output);
+    ReviewDTO toDTOFromUpdateOutput(ReviewUpdateUseCaseOutput output);
 
+    // Outros métodos
     ReviewCreateUseCaseInput fromDTO(CreateReviewDTO dto);
 
     ReviewListByRestaurantIdUseCaseInput fromDTO(String restaurantId);

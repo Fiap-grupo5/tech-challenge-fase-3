@@ -34,13 +34,13 @@ public class ReviewController implements ReviewApi {
     public ResponseEntity<ReviewDTO> updateReview(
             final String id, final UpdateReviewDTO body) {
         final var input = reviewMapper.fromDTO(id, body);
-        final var output = reviewMapper.toDTO(reviewUpdateUseCase.execute(input));
+        final var output = reviewMapper.toDTOFromUpdateOutput(reviewUpdateUseCase.execute(input));
         return ResponseEntity.ok(output);
     }
 
     @Override
     public ResponseEntity<ReviewDTO> findReviewById(final String id) {
-        final var output = reviewMapper.toDTO(reviewGetByIdUseCase.execute(id));
+        final var output = reviewMapper.toDTOFromGetByIdOutput(reviewGetByIdUseCase.execute(id));
         return ResponseEntity.ok(output);
     }
 
@@ -49,7 +49,10 @@ public class ReviewController implements ReviewApi {
             final String restaurantId) {
         final var input = reviewMapper.fromDTO(restaurantId);
         final var reviews =
-                reviewListByRestaurantIdUseCase.execute(input).stream().map(reviewMapper::toDTO).collect(Collectors.toList());
+                reviewListByRestaurantIdUseCase.execute(input)
+                        .stream()
+                        .map(reviewMapper::toDTOFromListByRestaurantOutput)
+                        .collect(Collectors.toList());
         final var paginatedReviews = new PaginateReviewDTO();
         paginatedReviews.addAll(reviews);
         return ResponseEntity.ok(paginatedReviews);
@@ -57,9 +60,11 @@ public class ReviewController implements ReviewApi {
 
     @Override
     public ResponseEntity<PaginateReviewDTO> findReviews() {
-        final var review = reviewListUseCase.execute().stream().map(reviewMapper::toDTO).collect(Collectors.toList());
-        final var paginatedReviews =
-                new PaginateReviewDTO();
+        final var review = reviewListUseCase.execute()
+                .stream()
+                .map(reviewMapper::toDTOFromListOutput)
+                .collect(Collectors.toList());
+        final var paginatedReviews = new PaginateReviewDTO();
         paginatedReviews.addAll(review);
         return ResponseEntity.ok(paginatedReviews);
     }
@@ -69,7 +74,7 @@ public class ReviewController implements ReviewApi {
         final var useCaseInput = reviewMapper.fromDTO(body);
         final var useCaseOutput = reviewCreateUseCase.execute(useCaseInput);
         var uri = URI.create("/avaliacoes/" + useCaseOutput.id());
-        return ResponseEntity.created(uri).body(reviewMapper.toDTO(useCaseOutput));
+        return ResponseEntity.created(uri).body(reviewMapper.toDTOFromCreateOutput(useCaseOutput));
     }
 
     @Override
