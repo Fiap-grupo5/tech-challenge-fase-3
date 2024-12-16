@@ -28,6 +28,7 @@ import com.g5.restaurants.aplication.usecases.review.create.ReviewCreateUseCaseI
 import com.g5.restaurants.aplication.usecases.review.delete.DefaultReviewDeleteUseCase;
 import com.g5.restaurants.aplication.usecases.review.retrieve.get.DefaultReviewGetByIdUseCase;
 import com.g5.restaurants.aplication.usecases.review.retrieve.list.DefaultReviewListUseCase;
+import com.g5.restaurants.aplication.usecases.review.retrieve.list.byRestaurantId.ReviewListByRestaurantIdUseCaseInput;
 import com.g5.restaurants.aplication.usecases.review.update.DefaultReviewUpdateUseCase;
 import com.g5.restaurants.aplication.usecases.review.update.ReviewUpdateUseCaseInput;
 
@@ -209,5 +210,15 @@ public class ReviewUseCaseTest {
         assertThatThrownBy(() -> updateUseCase.execute(input))
             .isInstanceOf(CommonException.class)
             .hasMessage("Review with ID non-existent-id not found!.");
+    }
+
+    @Test
+    void shouldCreateInput() {
+        // Arrange & Act
+        var input = new ReviewListByRestaurantIdUseCaseInput("some-restaurant-id");
+
+        // Assert
+        assertThat(input).isNotNull();
+        assertThat(input.restaurantId()).isEqualTo("some-restaurant-id");
     }
 }
