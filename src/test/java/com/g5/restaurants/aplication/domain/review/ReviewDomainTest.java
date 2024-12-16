@@ -124,4 +124,47 @@ class ReviewDomainTest {
         assertThat(result).contains("5");
         assertThat(result).contains("Amazing experience!");
     }
+
+    @Test
+    void shouldThrowExceptionWhenRatingIsNull() {
+        var restaurantId = BaseId.generate();
+        var reviewerName = "John Doe";
+        Integer nullRating = null;
+        var comments = "Some comment";
+    
+        assertThatThrownBy(() -> Review.newReview(restaurantId, reviewerName, nullRating, comments))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("Rating must be between 1 and 5");
+    }
+    
+    @Test
+    void shouldThrowExceptionWhenRatingIsLessThanOne() {
+        var restaurantId = BaseId.generate();
+        var reviewerName = "John Doe";
+        var invalidRating = 0; // menor que 1
+        var comments = "Some comment";
+    
+        assertThatThrownBy(() -> Review.newReview(restaurantId, reviewerName, invalidRating, comments))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("Rating must be between 1 and 5");
+    }
+
+    @Test
+    void equalsShouldReturnTrueWhenComparingSameObject() {
+        var review = Review.newReview(BaseId.generate(), "John Doe", 5, "Great!");
+        assertThat(review.equals(review)).isTrue();
+    }
+
+    @Test
+    void equalsShouldReturnFalseWhenObjectIsNull() {
+        var review = Review.newReview(BaseId.generate(), "John Doe", 5, "Great!");
+        assertThat(review.equals(null)).isFalse();
+    }
+    
+    @Test
+    void equalsShouldReturnFalseWhenObjectIsDifferentType() {
+        var review = Review.newReview(BaseId.generate(), "John Doe", 5, "Great!");
+        assertThat(review.equals("some string")).isFalse();
+    }
+    
 }

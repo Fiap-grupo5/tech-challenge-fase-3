@@ -181,4 +181,66 @@ class RestaurantDomainTest {
         assertThat(result).contains("SP");
         assertThat(result).contains("BRAZILIAN");
     }
+
+    @Test
+    void equalsShouldReturnFalseWhenObjectIsNull() {
+        var restaurant = Restaurant.newRestaurant("Name", 10, "Address", "City", "State", RestaurantDTO.TypeEnum.BRAZILIAN, LocalTime.of(10,0), LocalTime.of(22,0));
+        assertThat(restaurant.equals(null)).isFalse();
+    }
+
+    @Test
+    void equalsShouldReturnFalseWhenObjectIsDifferentType() {
+        var restaurant = Restaurant.newRestaurant("Name", 10, "Address", "City", "State", RestaurantDTO.TypeEnum.BRAZILIAN, LocalTime.of(10,0), LocalTime.of(22,0));
+        assertThat(restaurant.equals("Some String")).isFalse();
+    }
+
+    @Test
+    void shouldThrowExceptionWhenNumberOfTablesIsNull() {
+        assertThatThrownBy(() -> Restaurant.newRestaurant(
+            "Name",
+            null,
+            "Address",
+            "City",
+            "State",
+            RestaurantDTO.TypeEnum.BRAZILIAN,
+            LocalTime.of(10, 0),
+            LocalTime.of(22, 0)
+        )).isInstanceOf(IllegalArgumentException.class)
+         .hasMessage("Number of tables must be at least 1");
+    }
+    
+    @Test
+    void equalsShouldReturnFalseWhenIdsAreDifferent() {
+        var restaurant1 = new Restaurant(
+            BaseId.generate(),
+            "Name1", 10, "Address1", "City1", "State1",
+            RestaurantDTO.TypeEnum.BRAZILIAN,
+            LocalTime.of(10,0), LocalTime.of(22,0)
+        );
+
+        var restaurant2 = new Restaurant(
+            BaseId.generate(),
+            "Name2", 10, "Address2", "City2", "State2",
+            RestaurantDTO.TypeEnum.BRAZILIAN,
+            LocalTime.of(11,0), LocalTime.of(23,0)
+        );
+
+        assertThat(restaurant1).isNotEqualTo(restaurant2);
+    }
+
+    @Test
+    void shouldInstantiateWithNoArgsConstructor() {
+        var restaurant = new Restaurant();
+        assertThat(restaurant).isNotNull();
+        assertThat(restaurant.getId()).isNull();
+        var anotherRestaurant = new Restaurant();
+        assertThat(restaurant).isEqualTo(anotherRestaurant);
+    }    
+
+    @Test
+    void equalsShouldReturnTrueWhenComparingSameObject() {
+        var restaurant = Restaurant.newRestaurant("Name", 10, "Address", "City", "State", RestaurantDTO.TypeEnum.BRAZILIAN, LocalTime.of(10,0), LocalTime.of(22,0));
+        assertThat(restaurant.equals(restaurant)).isTrue();
+    }
+
 }
