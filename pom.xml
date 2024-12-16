@@ -247,12 +247,31 @@
                 <version>0.8.8</version>
                 <executions>
                     <execution>
+                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
-                            <goal>report</goal>
                         </goals>
                     </execution>
-            </executions>
+                    <execution>
+                        <id>report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/generated/**</exclude>
+                                <exclude>**/*Generated*.class</exclude>
+                                <exclude>**/*DTO*.class</exclude>
+                                <exclude>**/model/**</exclude>
+                                <exclude>**/swagger/**</exclude>
+                                <exclude>**/api/**</exclude>
+                                <exclude>**/infrastructure/mappers/**</exclude>
+                                <exclude>com/g5/restaurants/Application*</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
