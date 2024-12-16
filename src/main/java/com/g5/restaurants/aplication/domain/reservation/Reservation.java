@@ -21,7 +21,6 @@ public class Reservation {
     private Integer numberOfTables;
     private ReservationDTO.StatusEnum status;
 
-    // Método estático para criar uma nova reserva
     public static Reservation newReservation(
             BaseId restaurantId,
             String customerName,
@@ -54,7 +53,6 @@ public class Reservation {
         );
     }
 
-    // Sobrecarga do método update para atualizar múltiplos campos
     public void update(
             String customerName,
             String customerContact,
@@ -84,7 +82,6 @@ public class Reservation {
         }
     }
 
-    // Sobrecarga do método update para atualizar apenas o status
     public void update(ReservationDTO.StatusEnum status) {
         if (status != null) {
             this.status = status;
@@ -93,9 +90,7 @@ public class Reservation {
         }
     }
 
-    // Validação para o formato de contato (BRASIL)
     private static boolean isValidContact(String contact) {
-        // Regex para validar os formatos: (DDD) XXXXX-XXXX (celulares) e (DDD) XXXX-XXXX (fixos)
         String regex = "^\\(\\d{2}\\) (\\d{4,5}-\\d{4})$";
         return contact.matches(regex);
     }
@@ -105,7 +100,7 @@ public class Reservation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reservation that = (Reservation) o;
-        return Objects.equals(id, that.id); // Compara apenas pelo campo `id`
+        return Objects.equals(id, that.id);
     }
 
     @Override

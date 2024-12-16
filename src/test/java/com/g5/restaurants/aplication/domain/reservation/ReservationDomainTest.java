@@ -158,4 +158,263 @@ class ReservationDomainTest {
         assertThat(result).contains("(11) 98765-4321");
         assertThat(result).contains("PENDING");
     }
+    @Test
+    void shouldThrowExceptionWhenCustomerNameIsEmpty() {
+        // Arrange
+        var restaurantId = BaseId.generate();
+    
+        // Act & Assert
+        assertThatThrownBy(() -> Reservation.newReservation(
+            restaurantId,
+            "   ",
+            "(11) 98765-4321",
+            LocalDate.of(2024, 12, 25),
+            3,
+            ReservationDTO.StatusEnum.PENDING
+        ))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage("Customer name cannot be null or empty");
+    }
+    
+    @Test
+    void shouldThrowExceptionWhenCustomerContactIsInvalid() {
+        // Arrange
+        var restaurantId = BaseId.generate();
+    
+        // Act & Assert
+        assertThatThrownBy(() -> Reservation.newReservation(
+            restaurantId,
+            "John Doe",
+            "invalid-contact-format",
+            LocalDate.of(2024, 12, 25),
+            3,
+            ReservationDTO.StatusEnum.PENDING
+        ))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage("Invalid contact format. Expected formats: (DDD) 00000-0000 or (DDD) 0000-0000");
+    }
+    
+    @Test
+    void shouldThrowExceptionWhenUpdatingWithEmptyCustomerName() {
+        // Arrange
+        var reservation = Reservation.newReservation(
+            BaseId.generate(),
+            "John Doe",
+            "(11) 98765-4321",
+            LocalDate.of(2024, 12, 25),
+            3,
+            ReservationDTO.StatusEnum.PENDING
+        );
+    
+        // Act & Assert
+        assertThatThrownBy(() -> reservation.update("   ", null, null, null))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("Customer name cannot be empty");
+    }
+    
+    @Test
+    void shouldThrowExceptionWhenUpdatingWithInvalidContact() {
+        // Arrange
+        var reservation = Reservation.newReservation(
+            BaseId.generate(),
+            "John Doe",
+            "(11) 98765-4321",
+            LocalDate.of(2024, 12, 25),
+            3,
+            ReservationDTO.StatusEnum.PENDING
+        );
+    
+        // Act & Assert
+        assertThatThrownBy(() -> reservation.update(null, "invalid-contact", null, null))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("Invalid contact format. Expected formats: (DDD) 00000-0000 or (DDD) 0000-0000");
+    }
+    
+    @Test
+    void shouldThrowExceptionWhenUpdatingWithInvalidNumberOfTables() {
+        // Arrange
+        var reservation = Reservation.newReservation(
+            BaseId.generate(),
+            "John Doe",
+            "(11) 98765-4321",
+            LocalDate.of(2024, 12, 25),
+            3,
+            ReservationDTO.StatusEnum.PENDING
+        );
+    
+        // Act & Assert
+        assertThatThrownBy(() -> reservation.update(null, null, null, 0))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("Number of tables must be at least 1");
+    }
+    
+    @Test
+    void shouldUpdateReservationDate() {
+        // Arrange
+        var reservation = Reservation.newReservation(
+            BaseId.generate(),
+            "John Doe",
+            "(11) 98765-4321",
+            LocalDate.of(2024, 12, 25),
+            3,
+            ReservationDTO.StatusEnum.PENDING
+        );
+    
+        // Act
+        reservation.update(null, null, LocalDate.of(2025, 1, 1), null);
+    
+        // Assert
+        assertThat(reservation.getReservationDate()).isEqualTo(LocalDate.of(2025, 1, 1));
+    }
+    
+    @Test
+    void shouldThrowExceptionWhenUpdatingWithNullStatus() {
+        // Arrange
+        var reservation = Reservation.newReservation(
+            BaseId.generate(),
+            "John Doe",
+            "(11) 98765-4321",
+            LocalDate.of(2024, 12, 25),
+            3,
+            ReservationDTO.StatusEnum.PENDING
+        );
+    
+        // Act & Assert
+        assertThatThrownBy(() -> reservation.update((ReservationDTO.StatusEnum) null))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("Status cannot be null");
+    }
+    
+    @Test
+    void equalsShouldReturnFalseWhenObjectIsNull() {
+        // Arrange
+        var reservation = Reservation.newReservation(
+            BaseId.generate(),
+            "John Doe",
+            "(11) 98765-4321",
+            LocalDate.of(2024, 12, 25),
+            3,
+            ReservationDTO.StatusEnum.PENDING
+        );
+    
+        // Act
+        boolean result = reservation.equals(null);
+    
+        // Assert
+        assertThat(result).isFalse();
+    }
+    
+    @Test
+    void equalsShouldReturnFalseWhenObjectIsDifferentType() {
+        // Arrange
+        var reservation = Reservation.newReservation(
+            BaseId.generate(),
+            "John Doe",
+            "(11) 98765-4321",
+            LocalDate.of(2024, 12, 25),
+            3,
+            ReservationDTO.StatusEnum.PENDING
+        );
+    
+        // Act
+        boolean result = reservation.equals("string");
+    
+        // Assert
+        assertThat(result).isFalse();
+    }
+    
+    @Test
+    void equalsShouldReturnTrueWhenComparingSameObject() {
+        // Arrange
+        var reservation = Reservation.newReservation(
+            BaseId.generate(),
+            "John Doe",
+            "(11) 98765-4321",
+            LocalDate.of(2024, 12, 25),
+            3,
+            ReservationDTO.StatusEnum.PENDING
+        );
+    
+        // Act
+        boolean result = reservation.equals(reservation);
+    
+        // Assert
+        assertThat(result).isTrue();
+    }
+    
+    @Test
+    void shouldThrowExceptionWhenCustomerContactIsNull() {
+        // Arrange
+        var restaurantId = BaseId.generate();
+    
+        // Act & Assert
+        assertThatThrownBy(() -> Reservation.newReservation(
+            restaurantId,
+            "John Doe",
+            null,
+            LocalDate.of(2024, 12, 25),
+            3,
+            ReservationDTO.StatusEnum.PENDING
+        ))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage("Invalid contact format. Expected formats: (DDD) 00000-0000 or (DDD) 0000-0000");
+    }
+    
+    @Test
+    void shouldThrowExceptionWhenNumberOfTablesIsNull() {
+        // Arrange
+        var restaurantId = BaseId.generate();
+    
+        // Act & Assert
+        assertThatThrownBy(() -> Reservation.newReservation(
+            restaurantId,
+            "John Doe",
+            "(11) 98765-4321",
+            LocalDate.of(2024, 12, 25),
+            null,
+            ReservationDTO.StatusEnum.PENDING
+        ))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage("Number of tables must be at least 1");
+    }
+    
+    @Test
+    void shouldCreateNewReservationWithNullDateAndThenUpdateIt() {
+        // Arrange
+        var restaurantId = BaseId.generate();
+        var reservation = Reservation.newReservation(
+            restaurantId,
+            "John Doe",
+            "(11) 98765-4321",
+            null,
+            3,
+            ReservationDTO.StatusEnum.PENDING
+        );
+    
+        // Act
+        reservation.update(null, null, LocalDate.of(2025,1,1), null);
+    
+        // Assert
+        assertThat(reservation.getReservationDate()).isEqualTo(LocalDate.of(2025,1,1));
+    }
+    
+    @Test
+    void shouldNotUpdateReservationDateWhenItIsNull() {
+        // Arrange
+        var reservation = Reservation.newReservation(
+            BaseId.generate(),
+            "John Doe",
+            "(11) 98765-4321",
+            LocalDate.of(2024, 12, 25),
+            3,
+            ReservationDTO.StatusEnum.PENDING
+        );
+    
+        // Act
+        reservation.update(null, null, null, null);
+    
+        // Assert
+        assertThat(reservation.getReservationDate()).isEqualTo(LocalDate.of(2024, 12, 25));
+    }
+    
 }

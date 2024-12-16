@@ -1,4 +1,4 @@
-package com.g5.restaurants.aplication.usecases.review.retrive.list;
+package com.g5.restaurants.aplication.usecases.review.retrieve.list;
 
 import com.g5.restaurants.aplication.domain.base.BaseId;
 import com.g5.restaurants.aplication.domain.review.Review;

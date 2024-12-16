@@ -2,9 +2,9 @@ package com.g5.restaurants.infrastructure.api;
 
 import com.g5.restaurants.aplication.usecases.review.create.ReviewCreateUseCase;
 import com.g5.restaurants.aplication.usecases.review.delete.ReviewDeleteUseCase;
-import com.g5.restaurants.aplication.usecases.review.retrive.get.ReviewGetByIdUseCase;
-import com.g5.restaurants.aplication.usecases.review.retrive.list.ReviewListUseCase;
-import com.g5.restaurants.aplication.usecases.review.retrive.list.byRestaurantId.ReviewListByRestaurantIdUseCase;
+import com.g5.restaurants.aplication.usecases.review.retrieve.get.ReviewGetByIdUseCase;
+import com.g5.restaurants.aplication.usecases.review.retrieve.list.ReviewListUseCase;
+import com.g5.restaurants.aplication.usecases.review.retrieve.list.byRestaurantId.ReviewListByRestaurantIdUseCase;
 import com.g5.restaurants.aplication.usecases.review.update.ReviewUpdateUseCase;
 import com.g5.restaurants.infrastructure.mappers.ReviewMapper;
 import com.g5.review.api.ReviewApi;

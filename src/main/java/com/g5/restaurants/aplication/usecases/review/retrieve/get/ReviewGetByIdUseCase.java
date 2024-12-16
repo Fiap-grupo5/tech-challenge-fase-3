@@ -1,4 +1,4 @@
-package com.g5.restaurants.aplication.usecases.review.retrive.get;
+package com.g5.restaurants.aplication.usecases.review.retrieve.get;
 
 import com.g5.restaurants.aplication.usecases.UseCase;
 

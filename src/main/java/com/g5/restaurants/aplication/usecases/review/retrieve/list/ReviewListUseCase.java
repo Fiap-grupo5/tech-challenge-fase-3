@@ -1,4 +1,4 @@
-package com.g5.restaurants.aplication.usecases.review.retrive.list;
+package com.g5.restaurants.aplication.usecases.review.retrieve.list;
 
 import com.g5.restaurants.aplication.usecases.NullaryUseCase;
 

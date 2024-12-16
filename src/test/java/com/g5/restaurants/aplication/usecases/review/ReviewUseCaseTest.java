@@ -26,8 +26,8 @@ import com.g5.restaurants.aplication.repositories.ReviewRepository;
 import com.g5.restaurants.aplication.usecases.review.create.DefaultReviewCreateUseCase;
 import com.g5.restaurants.aplication.usecases.review.create.ReviewCreateUseCaseInput;
 import com.g5.restaurants.aplication.usecases.review.delete.DefaultReviewDeleteUseCase;
-import com.g5.restaurants.aplication.usecases.review.retrive.get.DefaultReviewGetByIdUseCase;
-import com.g5.restaurants.aplication.usecases.review.retrive.list.DefaultReviewListUseCase;
+import com.g5.restaurants.aplication.usecases.review.retrieve.get.DefaultReviewGetByIdUseCase;
+import com.g5.restaurants.aplication.usecases.review.retrieve.list.DefaultReviewListUseCase;
 import com.g5.restaurants.aplication.usecases.review.update.DefaultReviewUpdateUseCase;
 import com.g5.restaurants.aplication.usecases.review.update.ReviewUpdateUseCaseInput;
 

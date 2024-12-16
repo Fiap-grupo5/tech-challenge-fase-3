@@ -1,4 +1,4 @@
-package com.g5.restaurants.aplication.usecases.review.retrive.list.byRestaurantId;
+package com.g5.restaurants.aplication.usecases.review.retrieve.list.byRestaurantId;
 
 import com.g5.restaurants.aplication.repositories.ReviewRepository;
 import lombok.RequiredArgsConstructor;
