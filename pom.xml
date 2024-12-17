@@ -98,7 +98,6 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.15.2</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
@@ -279,6 +278,7 @@
                                 <exclude>**/swagger/**</exclude>
                                 <exclude>**/api/**</exclude>
                                 <exclude>**/infrastructure/mappers/**</exclude>
+                                <exclude>**/config/converters/**</exclude>
                                 <exclude>com/g5/restaurants/Application*</exclude>
                             </excludes>
                         </configuration>

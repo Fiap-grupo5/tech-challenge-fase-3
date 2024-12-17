@@ -3,7 +3,6 @@ package com.g5.restaurants.aplication.infrastructure.api;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.containsString;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -31,15 +30,12 @@ class ReservationControllerIT {
 
     private String restaurantId;
 
-    /**
-     * Configuração inicial: cria um restaurante e limpa o banco antes de cada teste.
-     */
     @BeforeEach
     public void setup() {
         RestAssured.port = port;
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 
-        mongoTemplate.getDb().drop(); // Limpa o banco antes de cada teste
+        mongoTemplate.getDb().drop();
 
         var restaurantRequest = new HashMap<String, Object>();
         restaurantRequest.put("name", "Tia Nicole");
@@ -51,7 +47,6 @@ class ReservationControllerIT {
         restaurantRequest.put("openedAt", "10:00:00");
         restaurantRequest.put("closedAt", "22:00:00");
 
-        // Cria um restaurante
         restaurantId = given()
             .contentType(MediaType.APPLICATION_JSON_VALUE)
             .body(restaurantRequest)
@@ -162,4 +157,5 @@ class ReservationControllerIT {
         var deletedReservation = mongoTemplate.findById(id, HashMap.class, "reservation");
         assertThat(deletedReservation).isNull();
     }
+
 }
