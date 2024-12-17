@@ -35,10 +35,8 @@ class ReviewControllerIT {
         RestAssured.port = port;
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 
-        // Limpa o banco de dados antes de cada teste
         mongoTemplate.getDb().drop();
 
-        // Cria um restaurante necessário para os testes
         var restaurantRequest = new HashMap<String, Object>();
         restaurantRequest.put("name", "Tia Nicole");
         restaurantRequest.put("numberOfTables", 10);
@@ -86,7 +84,6 @@ class ReviewControllerIT {
     void shouldFetchReviewById() {
         var id = UUID.randomUUID().toString();
 
-        // Insere um review no banco diretamente
         mongoTemplate.insert(new HashMap<String, Object>() {{
             put("_id", id);
             put("restaurantId", restaurantId);
@@ -164,8 +161,8 @@ class ReviewControllerIT {
     @Test
     void shouldFetchReviewsByRestaurantId() {
         var review1 = new HashMap<String, Object>() {{
-            put("_id", UUID.randomUUID().toString()); // UUID válido para o _id
-            put("restaurantId", restaurantId);        // Já é um UUID válido gerado no setup
+            put("_id", UUID.randomUUID().toString());
+            put("restaurantId", restaurantId);
             put("reviewerName", "João");
             put("rating", 3);
             put("comments", "Bom.");

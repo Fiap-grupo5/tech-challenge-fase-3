@@ -27,7 +27,7 @@ class ReservationRepositoryImplTest {
     @BeforeEach
     void setUp() {
         reservationRepository = new ReservationRepositoryImpl(reservationMongoRepository);
-        reservationMongoRepository.deleteAll(); // Limpa os dados entre os testes
+        reservationMongoRepository.deleteAll();
     }
 
     @Test

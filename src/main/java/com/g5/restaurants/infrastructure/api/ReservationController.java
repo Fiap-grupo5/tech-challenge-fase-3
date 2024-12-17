@@ -36,7 +36,6 @@ public class ReservationController implements ReservationApi {
     private final ReservationGetByIdUseCase reservationGetByIdUseCase;
     private final ReservationUpdateUseCase reservationUpdateUseCase;
 
-    // Tratamento de exceções customizadas
     @ExceptionHandler(CommonException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<?> handleCommonException(CommonException ex) {
@@ -44,22 +43,18 @@ public class ReservationController implements ReservationApi {
                 .body(Map.of("message", ex.getMessage()));
     }
 
-    // Tratamento de erro para UUID inválido
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException ex) {
         return ResponseEntity.badRequest().body(Map.of("message", ex.getMessage()));
     }
 
-    // Tratamento de erros gerais
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<?> handleGeneralException(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(Map.of("message", "Internal Server Error", "error", ex.getMessage()));
     }
-
-    // Criação de reserva
     @Override
     public ResponseEntity<ReservationDTO> createReservation(CreateReservationDTO body) {
         final var useCaseInput = reservationMapper.fromDTO(body);
@@ -68,7 +63,6 @@ public class ReservationController implements ReservationApi {
         return ResponseEntity.created(uri).body(reservationMapper.toDTO(useCaseOutput));
     }
 
-    // Listagem de reservas
     @Override
     public ResponseEntity<PaginateReservationDTO> findReservation() {
         final var reservations = reservationListUseCase.execute()
@@ -82,7 +76,6 @@ public class ReservationController implements ReservationApi {
         return ResponseEntity.ok(paginatedReservations);
     }
 
-    // Busca de reserva por ID com validação de UUID
     @Override
     public ResponseEntity<ReservationDTO> findReservationById(String id) {
         try {
@@ -94,7 +87,6 @@ public class ReservationController implements ReservationApi {
         }
     }
 
-    // Atualização de reserva
     @Override
     public ResponseEntity<ReservationDTO> updateReservation(final String id, final UpdateReservationDTO body) {
         try {
@@ -107,7 +99,6 @@ public class ReservationController implements ReservationApi {
         }
     }
 
-    // Exclusão de reserva
     @Override
     public ResponseEntity<Void> deleteReservation(String id) {
         try {
