@@ -1,4 +1,4 @@
-package com.g5.restaurants.aplication.infrastructure.api;
+package com.g5.restaurants.aplication.infrastructure.api.reservation;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;

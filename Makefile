@@ -39,3 +39,4 @@ clean:
 	@./mvnw clean
 	@docker compose down
 	@echo "$(TIMESTAMP) [INFO] Limpeza concluída."
+

@@ -1,4 +1,4 @@
-package com.g5.restaurants.aplication.infrastructure.api;
+package com.g5.restaurants.aplication.infrastructure.api.reservation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;

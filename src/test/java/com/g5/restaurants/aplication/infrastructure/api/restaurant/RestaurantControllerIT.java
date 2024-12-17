@@ -1,4 +1,4 @@
-package com.g5.restaurants.aplication.infrastructure.api;
+package com.g5.restaurants.aplication.infrastructure.api.restaurant;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;

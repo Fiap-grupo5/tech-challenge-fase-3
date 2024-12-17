@@ -133,3 +133,50 @@ make clean
    make clean
    ```
 
+---
+
+## Gerar Relatório de Cobertura com Jacoco
+
+O **Jacoco** gera relatórios de cobertura de testes automaticamente após a execução dos testes.
+
+### Gerando o Relatório
+1. Execute os testes:
+   ```bash
+   make ci-test
+   ```
+2. O **Jacoco** irá gerar o relatório de cobertura automaticamente no seguinte diretório:
+   ```
+   target/site/jacoco/index.html
+   ```
+
+### Visualizando o Relatório
+Para visualizar o relatório no navegador, execute o comando:
+
+**Linux**:
+```bash
+xdg-open target/site/jacoco/index.html
+```
+
+**Windows (WSL)**:
+```bash
+explorer.exe target/site/jacoco/index.html
+```
+
+**Outros Sistemas**:
+- Navegue manualmente até o diretório `target/site/jacoco/` e abra o arquivo `index.html`.
+
+### Estrutura do Relatório
+- **Instruções**: Percentual de instruções executadas.
+- **Branches**: Percentual de branches (condições) cobertas.
+- **Linhas**: Percentual de linhas de código cobertas.
+
+---
+
+### Exemplo de Fluxo Completo
+```bash
+make clean
+make start-api
+make ci-test
+# Visualizar o relatório de cobertura
+xdg-open target/site/jacoco/index.html
+```
