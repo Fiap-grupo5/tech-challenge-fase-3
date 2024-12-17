@@ -35,14 +35,21 @@ import com.g5.restaurants.aplication.usecases.review.retrieve.list.byRestaurantI
 import com.g5.restaurants.aplication.usecases.review.retrieve.list.byRestaurantId.ReviewListByRestaurantIdUseCase;
 import com.g5.restaurants.aplication.usecases.review.update.DefaultReviewUpdateUseCase;
 import com.g5.restaurants.aplication.usecases.review.update.ReviewUpdateUseCase;
+import com.g5.restaurants.infrastructure.config.converters.LocalTimeReadConverter;
+import com.g5.restaurants.infrastructure.config.converters.LocalTimeToStringConverter;
+import com.g5.restaurants.infrastructure.config.converters.LocalTimeWriteConverter;
 import com.g5.restaurants.infrastructure.persistence.repositories.ReservationMongoRepository;
 import com.g5.restaurants.infrastructure.persistence.repositories.RestaurantMongoRepository;
 import com.g5.restaurants.infrastructure.persistence.repositories.ReviewMongoRepository;
 import com.g5.restaurants.infrastructure.repositories.ReservationRepositoryImpl;
 import com.g5.restaurants.infrastructure.repositories.RestaurantRepositoryImpl;
 import com.g5.restaurants.infrastructure.repositories.ReviewRepositoryImpl;
+
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 
 @Configuration
 public class ApplicationConfig {
@@ -148,8 +155,21 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public MongoCustomConversions customConversions() {
+        return new MongoCustomConversions(Arrays.asList(
+            new LocalTimeReadConverter(),
+            new LocalTimeWriteConverter()
+        ));
+    }
+
+    @Bean
     public RestaurantDeleteUseCase RestaurantDeleteUseCase(
             final RestaurantRepository restaurantRepository) {
         return new DefaultRestaurantDeleteUseCase(restaurantRepository);
+    }
+
+    @Bean
+    public LocalTimeToStringConverter localTimeToStringConverter() {
+        return new LocalTimeToStringConverter();
     }
 }

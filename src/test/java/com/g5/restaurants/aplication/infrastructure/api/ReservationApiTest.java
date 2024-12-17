@@ -166,7 +166,7 @@ class ReservationApiTest {
     
         // Assert
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_IMPLEMENTED);
-        verify(requestMock, times(2)).getHeader("Accept"); // Alterado para aceitar duas chamadas
+        verify(requestMock, times(2)).getHeader("Accept");
         verify(objectMapperMock, never()).readValue(anyString(), eq(ReservationDTO.class));
     }
     
@@ -181,7 +181,7 @@ class ReservationApiTest {
     
         // Assert
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_IMPLEMENTED);
-        verify(reservationApi, times(1)).getObjectMapper(); // Já chamado no método findReservation
+        verify(reservationApi, times(1)).getObjectMapper();
     }
     
     @Test

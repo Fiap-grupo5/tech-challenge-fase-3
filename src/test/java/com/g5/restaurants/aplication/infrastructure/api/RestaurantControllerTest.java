@@ -129,7 +129,6 @@ class RestaurantControllerTest {
                 RestaurantDTO.TypeEnum.BRAZILIAN, openedAt, closedAt
         );
     
-        // Valor esperado do DTO
         RestaurantDTO expectedDTO = new RestaurantDTO()
                 .id(UUID.fromString(id.value()))
                 .name("Tia Nicole")

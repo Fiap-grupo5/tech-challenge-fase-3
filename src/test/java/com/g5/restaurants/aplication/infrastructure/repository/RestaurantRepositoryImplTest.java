@@ -26,7 +26,7 @@ class RestaurantRepositoryImplTest {
     @BeforeEach
     void setUp() {
         restaurantRepository = new RestaurantRepositoryImpl(restaurantMongoRepository);
-        restaurantMongoRepository.deleteAll(); // Limpa os dados antes de cada teste
+        restaurantMongoRepository.deleteAll();
     }
 
     @Test

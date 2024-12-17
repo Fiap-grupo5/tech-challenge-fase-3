@@ -14,6 +14,7 @@ import com.g5.review.model.ReviewDTO;
 import com.g5.review.model.UpdateReviewDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
@@ -46,17 +47,20 @@ public class ReviewController implements ReviewApi {
 
     @Override
     public ResponseEntity<PaginateReviewDTO> searchReviewByRestaurantId(
-            final String restaurantId) {
+            @PathVariable("restaurantId") final String restaurantId) { // Corrige o nome do parâmetro
         final var input = reviewMapper.fromDTO(restaurantId);
         final var reviews =
                 reviewListByRestaurantIdUseCase.execute(input)
                         .stream()
                         .map(reviewMapper::toDTOFromListByRestaurantOutput)
                         .collect(Collectors.toList());
+    
         final var paginatedReviews = new PaginateReviewDTO();
         paginatedReviews.addAll(reviews);
+    
         return ResponseEntity.ok(paginatedReviews);
     }
+    
 
     @Override
     public ResponseEntity<PaginateReviewDTO> findReviews() {

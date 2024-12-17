@@ -26,7 +26,7 @@ class ReviewRepositoryImplTest {
     @BeforeEach
     void setUp() {
         reviewRepository = new ReviewRepositoryImpl(reviewMongoRepository);
-        reviewMongoRepository.deleteAll(); // Limpa a base antes de cada teste
+        reviewMongoRepository.deleteAll();
     }
 
     @Test
