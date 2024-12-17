@@ -4,10 +4,10 @@ import com.g5.restaurants.aplication.domain.base.BaseId;
 import com.g5.restaurants.aplication.domain.review.Review;
 import com.g5.restaurants.aplication.usecases.review.create.ReviewCreateUseCaseInput;
 import com.g5.restaurants.aplication.usecases.review.create.ReviewCreateUseCaseOutput;
-import com.g5.restaurants.aplication.usecases.review.retrive.get.ReviewGetByIdUseCaseOutput;
-import com.g5.restaurants.aplication.usecases.review.retrive.list.ReviewListUseCaseOutput;
-import com.g5.restaurants.aplication.usecases.review.retrive.list.byRestaurantId.ReviewListByRestaurantIdUseCaseInput;
-import com.g5.restaurants.aplication.usecases.review.retrive.list.byRestaurantId.ReviewListByRestaurantIdUseCaseOutput;
+import com.g5.restaurants.aplication.usecases.review.retrieve.get.ReviewGetByIdUseCaseOutput;
+import com.g5.restaurants.aplication.usecases.review.retrieve.list.ReviewListUseCaseOutput;
+import com.g5.restaurants.aplication.usecases.review.retrieve.list.byRestaurantId.ReviewListByRestaurantIdUseCaseInput;
+import com.g5.restaurants.aplication.usecases.review.retrieve.list.byRestaurantId.ReviewListByRestaurantIdUseCaseOutput;
 import com.g5.restaurants.aplication.usecases.review.update.ReviewUpdateUseCaseInput;
 import com.g5.restaurants.aplication.usecases.review.update.ReviewUpdateUseCaseOutput;
 import com.g5.restaurants.infrastructure.persistence.entities.ReviewEntity;
@@ -29,36 +29,38 @@ public interface ReviewMapper {
 
     ReviewMapper INSTANCE = Mappers.getMapper(ReviewMapper.class);
 
+    // Métodos toDTO únicos para cada caso de uso
     @Mapping(target = "id", expression = "java(java.util.UUID.fromString(output.id().toString()))")
     @Mapping(target = "restaurantId", expression = "java(java.util.UUID.fromString(output.restaurantId().toString()))")
     @Mapping(target = "createdAt", expression = "java(mapOffsetDateTime(output.createdAt()))")
     @Mapping(target = "updatedAt", expression = "java(mapOffsetDateTime(output.updatedAt()))")
-    ReviewDTO toDTO(ReviewCreateUseCaseOutput output);
+    ReviewDTO toDTOFromCreateOutput(ReviewCreateUseCaseOutput output);
 
     @Mapping(target = "id", expression = "java(java.util.UUID.fromString(output.id().toString()))")
     @Mapping(target = "restaurantId", expression = "java(java.util.UUID.fromString(output.restaurantId().toString()))")
     @Mapping(target = "createdAt", expression = "java(mapOffsetDateTime(output.createdAt()))")
     @Mapping(target = "updatedAt", expression = "java(mapOffsetDateTime(output.updatedAt()))")
-    ReviewDTO toDTO(ReviewGetByIdUseCaseOutput output);
+    ReviewDTO toDTOFromGetByIdOutput(ReviewGetByIdUseCaseOutput output);
 
     @Mapping(target = "id", expression = "java(java.util.UUID.fromString(output.id().toString()))")
     @Mapping(target = "restaurantId", expression = "java(java.util.UUID.fromString(output.restaurantId().toString()))")
     @Mapping(target = "createdAt", expression = "java(mapOffsetDateTime(output.createdAt()))")
     @Mapping(target = "updatedAt", expression = "java(mapOffsetDateTime(output.updatedAt()))")
-    ReviewDTO toDTO(ReviewListUseCaseOutput output);
+    ReviewDTO toDTOFromListOutput(ReviewListUseCaseOutput output);
 
     @Mapping(target = "id", expression = "java(java.util.UUID.fromString(output.id().toString()))")
     @Mapping(target = "restaurantId", expression = "java(java.util.UUID.fromString(output.restaurantId().toString()))")
     @Mapping(target = "createdAt", expression = "java(mapOffsetDateTime(output.createdAt()))")
     @Mapping(target = "updatedAt", expression = "java(mapOffsetDateTime(output.updatedAt()))")
-    ReviewDTO toDTO(ReviewListByRestaurantIdUseCaseOutput output);
+    ReviewDTO toDTOFromListByRestaurantOutput(ReviewListByRestaurantIdUseCaseOutput output);
 
     @Mapping(target = "id", expression = "java(java.util.UUID.fromString(output.id().toString()))")
     @Mapping(target = "restaurantId", expression = "java(java.util.UUID.fromString(output.restaurantId().toString()))")
     @Mapping(target = "createdAt", expression = "java(mapOffsetDateTime(output.createdAt()))")
     @Mapping(target = "updatedAt", expression = "java(mapOffsetDateTime(output.updatedAt()))")
-    ReviewDTO toDTO(ReviewUpdateUseCaseOutput output);
+    ReviewDTO toDTOFromUpdateOutput(ReviewUpdateUseCaseOutput output);
 
+    // Outros métodos
     ReviewCreateUseCaseInput fromDTO(CreateReviewDTO dto);
 
     ReviewListByRestaurantIdUseCaseInput fromDTO(String restaurantId);

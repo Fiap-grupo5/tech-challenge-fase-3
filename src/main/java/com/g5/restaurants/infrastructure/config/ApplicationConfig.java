@@ -27,22 +27,29 @@ import com.g5.restaurants.aplication.usecases.review.create.DefaultReviewCreateU
 import com.g5.restaurants.aplication.usecases.review.create.ReviewCreateUseCase;
 import com.g5.restaurants.aplication.usecases.review.delete.DefaultReviewDeleteUseCase;
 import com.g5.restaurants.aplication.usecases.review.delete.ReviewDeleteUseCase;
-import com.g5.restaurants.aplication.usecases.review.retrive.get.DefaultReviewGetByIdUseCase;
-import com.g5.restaurants.aplication.usecases.review.retrive.get.ReviewGetByIdUseCase;
-import com.g5.restaurants.aplication.usecases.review.retrive.list.DefaultReviewListUseCase;
-import com.g5.restaurants.aplication.usecases.review.retrive.list.ReviewListUseCase;
-import com.g5.restaurants.aplication.usecases.review.retrive.list.byRestaurantId.DefaultReviewListByRestaurantIdUseCase;
-import com.g5.restaurants.aplication.usecases.review.retrive.list.byRestaurantId.ReviewListByRestaurantIdUseCase;
+import com.g5.restaurants.aplication.usecases.review.retrieve.get.DefaultReviewGetByIdUseCase;
+import com.g5.restaurants.aplication.usecases.review.retrieve.get.ReviewGetByIdUseCase;
+import com.g5.restaurants.aplication.usecases.review.retrieve.list.DefaultReviewListUseCase;
+import com.g5.restaurants.aplication.usecases.review.retrieve.list.ReviewListUseCase;
+import com.g5.restaurants.aplication.usecases.review.retrieve.list.byRestaurantId.DefaultReviewListByRestaurantIdUseCase;
+import com.g5.restaurants.aplication.usecases.review.retrieve.list.byRestaurantId.ReviewListByRestaurantIdUseCase;
 import com.g5.restaurants.aplication.usecases.review.update.DefaultReviewUpdateUseCase;
 import com.g5.restaurants.aplication.usecases.review.update.ReviewUpdateUseCase;
+import com.g5.restaurants.infrastructure.config.converters.LocalTimeReadConverter;
+import com.g5.restaurants.infrastructure.config.converters.LocalTimeToStringConverter;
+import com.g5.restaurants.infrastructure.config.converters.LocalTimeWriteConverter;
 import com.g5.restaurants.infrastructure.persistence.repositories.ReservationMongoRepository;
 import com.g5.restaurants.infrastructure.persistence.repositories.RestaurantMongoRepository;
 import com.g5.restaurants.infrastructure.persistence.repositories.ReviewMongoRepository;
 import com.g5.restaurants.infrastructure.repositories.ReservationRepositoryImpl;
 import com.g5.restaurants.infrastructure.repositories.RestaurantRepositoryImpl;
 import com.g5.restaurants.infrastructure.repositories.ReviewRepositoryImpl;
+
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 
 @Configuration
 public class ApplicationConfig {
@@ -148,8 +155,21 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public MongoCustomConversions customConversions() {
+        return new MongoCustomConversions(Arrays.asList(
+            new LocalTimeReadConverter(),
+            new LocalTimeWriteConverter()
+        ));
+    }
+
+    @Bean
     public RestaurantDeleteUseCase RestaurantDeleteUseCase(
             final RestaurantRepository restaurantRepository) {
         return new DefaultRestaurantDeleteUseCase(restaurantRepository);
+    }
+
+    @Bean
+    public LocalTimeToStringConverter localTimeToStringConverter() {
+        return new LocalTimeToStringConverter();
     }
 }

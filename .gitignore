@@ -1,24 +1,36 @@
-# Compiled class file
+# -----------------------
+# Arquivos Compilados
+# -----------------------
 *.class
 
-# Log file
+# -----------------------
+# Logs
+# -----------------------
 *.log
+hs_err_pid*
+replay_pid*
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-.vscode
-
-### IntelliJ IDEA ###
-.idea
+# -----------------------
+# IDEs
+# -----------------------
+# IntelliJ IDEA
+.idea/
 *.iws
 *.iml
 *.ipr
 
-# Package Files #
+# Eclipse
+*.settings/
+.metadata/
+*.classpath
+*.project
+
+# VSCode
+.vscode/
+
+# -----------------------
+# Arquivos de Build e Empacotamento
+# -----------------------
 *.jar
 *.war
 *.nar
@@ -27,6 +39,68 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+# -----------------------
+# Maven e Gradle
+# -----------------------
+target/
+.mvn/
+dependency-reduced-pom.xml
+release.properties
+
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# -----------------------
+# Relatórios de Teste
+# -----------------------
+surefire-reports/
+test-output/
+*.diff
+*.xml
+*.txt
+
+# -----------------------
+# Arquivos Temporários e Sensíveis
+# -----------------------
+*.tmp
+*.bak
+*.old
+*.ctxt
+
+# -----------------------
+# Configurações Locais e Variáveis de Ambiente
+# -----------------------
+.env
+*.env
+
+# -----------------------
+# Arquivos de Configuração do Spring
+# -----------------------
+application.properties
+application.yml
+application-*.properties
+application-*.yml
+
+# -----------------------
+# Banco de Dados
+# -----------------------
+*.h2.db
+*.mv.db
+*.db
+*.sqlite
+*.sql
+
+# -----------------------
+# Docker e Ferramentas de Deploy
+# -----------------------
+docker-compose.override.yml
+docker-compose.local.yml
+*.env
+
+# -----------------------
+# Arquivos específicos do sistema operacional
+# -----------------------
+.DS_Store
+Thumbs.db
+
