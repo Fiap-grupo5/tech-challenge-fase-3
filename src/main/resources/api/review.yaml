@@ -205,11 +205,9 @@ components:
           description: Name of reviewer
         rating:
           type: integer
-          minimum: 1
-          maximum: 5
+          minimum: 0
+          maximum: 100
           description: Ratting of review
-          example: 5
         comments:
           type: string
-          example: Great restaurant
           description: Comments of review

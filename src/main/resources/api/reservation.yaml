@@ -175,7 +175,6 @@ components:
           type: string
           format: phone
           description: Contact of Customer
-          example: (11) 99999-9999
         reservationDate:
           type: string
           format: date
