@@ -1,7 +1,46 @@
----
 # **Guia de Comandos do Makefile**
 
 Este documento descreve os comandos disponíveis no **Makefile** para automação do projeto.
+
+## **Pré-requisitos**
+
+### **1. Docker e Docker Compose**
+Para rodar o comando `start-api`, é necessário:
+- Docker e Docker Compose instalados.
+- Adicionar o usuário ao grupo Docker para evitar o uso do `sudo`.
+
+**Passos:**
+1. Instalar Docker Compose:
+   ```bash
+   sudo apt install docker-compose
+   ```
+2. Adicionar o usuário ao grupo Docker:
+   ```bash
+   sudo usermod -aG docker $USER
+   ```
+3. Reiniciar a sessão do terminal:
+   ```bash
+   newgrp docker
+   ```
+
+### **2. Biblioteca Make**
+Para executar o Makefile no Linux:
+```bash
+sudo apt install make
+```
+
+### **3. Maven Wrapper (mvnw)**
+Caso ocorra problemas de permissão ou conversão com o `mvnw`:
+```bash
+sudo apt install dos2unix
+```
+Convertendo o arquivo:
+```bash
+dos2unix mvnw
+chmod +x mvnw
+```
+
+---
 
 ## **Comandos**
 
@@ -29,7 +68,7 @@ make unit-test
 
 **Descrição:**
 - Usa o Maven com o profile `unit-test` para executar testes unitários.
-- O comando Maven executado é:  
+- O comando Maven executado é:
   ```bash
   ./mvnw verify -Punit-test
   ```
@@ -46,7 +85,7 @@ make integration-test
 
 **Descrição:**
 - Usa o Maven com o profile `integration-test` para executar testes de integração.
-- O comando Maven executado é:  
+- O comando Maven executado é:
   ```bash
   ./mvnw verify -Pintegration-test
   ```
@@ -63,7 +102,7 @@ make system-test
 
 **Descrição:**
 - Usa o Maven com o profile `system-test` para executar testes de sistema.
-- O comando Maven executado é:  
+- O comando Maven executado é:
   ```bash
   ./mvnw test -Psystem-test
   ```
@@ -135,11 +174,11 @@ make clean
 
 ---
 
-## Gerar Relatório de Cobertura com Jacoco
+## **Gerar Relatório de Cobertura com Jacoco**
 
 O **Jacoco** gera relatórios de cobertura de testes automaticamente após a execução dos testes.
 
-### Gerando o Relatório
+### **Gerando o Relatório**
 1. Execute os testes:
    ```bash
    make ci-test
@@ -149,7 +188,7 @@ O **Jacoco** gera relatórios de cobertura de testes automaticamente após a exe
    target/site/jacoco/index.html
    ```
 
-### Visualizando o Relatório
+### **Visualizando o Relatório**
 Para visualizar o relatório no navegador, execute o comando:
 
 **Linux**:
@@ -157,26 +196,67 @@ Para visualizar o relatório no navegador, execute o comando:
 xdg-open target/site/jacoco/index.html
 ```
 
-**Windows (WSL)**:
+**Windows (WSL):**
 ```bash
 explorer.exe target/site/jacoco/index.html
 ```
 
-**Outros Sistemas**:
+**Outros Sistemas:**
 - Navegue manualmente até o diretório `target/site/jacoco/` e abra o arquivo `index.html`.
 
-### Estrutura do Relatório
+### **Estrutura do Relatório**
 - **Instruções**: Percentual de instruções executadas.
 - **Branches**: Percentual de branches (condições) cobertas.
 - **Linhas**: Percentual de linhas de código cobertas.
 
 ---
 
-### Exemplo de Fluxo Completo
+## **Execução de Teste de Performance com JMeter**
+
+### **Pré-requisitos**
+- **JMeter** instalado.
+
+### **Execução do Teste**
+1. Navegue até a pasta onde está o JMeter:
+   ```bash
+   cd /caminho/para/apache-jmeter-5.6.3
+   ```
+2. Execute o teste de performance usando o arquivo `.jmx`:
+   ```bash
+   ./bin/jmeter -n -t /caminho/para/test_performance.jmx -l resultados.jtl -e -o /caminho/para/reports
+   ```
+   - **`-n`**: Executa em modo não-GUI (headless).
+   - **`-t`**: Caminho para o arquivo de teste `.jmx`.
+   - **`-l`**: Gera um arquivo de log com os resultados.
+   - **`-e` e `-o`**: Gera um relatório HTML na pasta especificada.
+
+### **Visualização do Relatório**
+1. Após executar o teste, acesse o relatório HTML gerado no diretório especificado:
+   ```bash
+   xdg-open /caminho/para/reports/index.html
+   ```
+   - Em sistemas WSL:
+     ```bash
+     explorer.exe /caminho/para/reports/index.html
+     ```
+
+### **Resultados**
+O relatório inclui:
+- **APDEX**: Índice de desempenho com base nos tempos de resposta.
+- **Resumo de Solicitações**: Percentual de aprovações e falhas.
+- **Estatísticas**: Detalhes sobre tempos de resposta, erros e taxa de transferência.
+
+---
+
+### **Exemplo de Fluxo Completo**
 ```bash
 make clean
 make start-api
 make ci-test
-# Visualizar o relatório de cobertura
+# Gerar e visualizar o relatório de cobertura
 xdg-open target/site/jacoco/index.html
+
+# Executar teste de performance
+./bin/jmeter -n -t /caminho/para/test_performance.jmx -l resultados.jtl -e -o /caminho/para/reports
+xdg-open /caminho/para/reports/index.html
 ```
