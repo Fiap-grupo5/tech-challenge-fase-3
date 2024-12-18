@@ -129,7 +129,8 @@ components:
         customerContact:
           type: string
           format: phone
-          description: Contact of Customer
+          description: string
+          example: (00) 00000-0000
         reservationDate:
           type: string
           format: date
@@ -174,7 +175,8 @@ components:
         customerContact:
           type: string
           format: phone
-          description: Contact of Customer
+          description: string
+          example: (00) 00000-0000
         reservationDate:
           type: string
           format: date
